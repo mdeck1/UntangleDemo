@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  * @param <E> the graph edge type
  * @author Timofey Chudakov
  */
+//TODO(mdeck1): sanitize this for API levels below 24
 public interface PlanarityTestingAlgorithm<V, E> {
 
     /**
@@ -38,8 +39,7 @@ public interface PlanarityTestingAlgorithm<V, E> {
 
     /**
      * Extracts a Kuratowski subdivision from the {@code graph}. The returned value certifies the
-     * nonplanarity of the graph. The returned certificate can be verified through the call to the
-     * {@link org.jgrapht.GraphTests#isKuratowskiSubdivision(Graph)}. This method will return a valid
+     * nonplanarity of the graph. This method will return a valid
      * result only if the {@code graph} is not planar.
      *
      * @return a Kuratowski subdivision from the {@code graph}

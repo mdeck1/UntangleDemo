@@ -49,6 +49,7 @@ import java.util.function.Predicate;
  * @param <E> the graph edge type
  * @author Timofey Chudakov
  */
+//TODO(mdeck1): sanitize this for API levels below 24
 public class BoyerMyrvoldPlanarityInspector<V, E> implements PlanarityTestingAlgorithm<V, E> {
     /**
      * Whether to print debug messages

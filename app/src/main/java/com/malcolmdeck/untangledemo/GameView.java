@@ -1,5 +1,6 @@
 package com.malcolmdeck.untangledemo;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -7,6 +8,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.lang.annotation.Target;
 
 public class GameView extends View {
 
@@ -28,6 +31,7 @@ public class GameView extends View {
         init(attrs);
     }
 
+    @TargetApi(21)
     public GameView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
@@ -86,6 +90,7 @@ public class GameView extends View {
                 gameState.circleUnselected();
                 break;
             default:
+                @TargetApi(21)
                 Log.e("DEBUG", MotionEvent.actionToString(event.getAction()));
         }
         return true;

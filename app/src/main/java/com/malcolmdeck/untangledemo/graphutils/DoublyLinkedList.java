@@ -40,6 +40,7 @@ import org.jgrapht.alg.util.*;
  * @author Timofey Chudakov
  * @author Hannes Wellmann
  */
+//TODO(mdeck1): sanitize this for API levels below 24
 public class DoublyLinkedList<E>
         extends
         AbstractSequentialList<E>
