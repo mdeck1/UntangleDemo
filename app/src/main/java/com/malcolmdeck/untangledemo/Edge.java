@@ -38,6 +38,14 @@ public class Edge {
         return isCrossed;
     }
 
+    public Circle getC1() {
+        return c1;
+    }
+
+    public Circle getC2() {
+        return c2;
+    }
+
     public void setIsCrossed(boolean isCrossed) {
         this.isCrossed = isCrossed;
     }
@@ -53,6 +61,35 @@ public class Edge {
     public boolean xRangeContains(float x) {
         computeEnds();
         return (x < startX && x > stopX) || (x > startX && x < stopX);
+
+    }
+
+    public boolean yRangeContains(float y) {
+        computeEnds();
+        return (y < startY && y > stopY) || (y > startY && y < stopY);
+
+    }
+
+    public boolean couldIntersect(Circle c) {
+        computeEnds();
+
+        float cLeftX = c.getX() - c.getRadius();
+        float cRightX = c.getX() + c.getRadius();
+        float cLowerY = c.getY() - c.getRadius();
+        float cUpperY = c.getY() + c.getRadius();
+
+        float edgeLeftX = startX < stopX ? startX : stopX;
+        float edgeRightX = startX < stopX ? stopX : startX;
+        float edgeLowerY = startY < stopY ? startY : stopY;
+        float edgeUpperY = startY < stopY ? stopY : startY;
+
+        if (cRightX < edgeLeftX ||
+            cLeftX > edgeRightX ||
+            cLowerY > edgeUpperY ||
+            cUpperY < edgeLowerY) {
+            return false;
+        }
+        return true;
 
     }
 

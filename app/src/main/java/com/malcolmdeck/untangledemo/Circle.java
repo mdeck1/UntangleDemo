@@ -13,20 +13,36 @@ public class Circle {
         circlePaint.setColor(Color.RED);
     }
 
+    private static final Paint identifierPaint = new Paint();
+    {
+        identifierPaint.setColor(Color.WHITE);
+        identifierPaint.setTextSize(80.0f);
+    }
+
     private float x;
     private float y;
     private float radius;
     private Paint paint;
+    private String identifier;
 
     public Circle(float x, float y, float radius) {
         this(x, y, radius, circlePaint);
     }
 
+    public Circle(float x, float y, float radius, String identifier) {
+        this(x, y, radius, circlePaint, identifier);
+    }
+
     public Circle(float x, float y, float radius, Paint paint) {
+        this(x, y, radius, paint, /*identifier=*/ null);
+    }
+
+    public Circle(float x, float y, float radius, Paint paint, String identifier) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.paint = paint;
+        this.identifier = identifier;
     }
 
     public void setPosition(float newX, float newY) {
@@ -71,5 +87,12 @@ public class Circle {
                 y * size + heightOffset,
                 radius * size,
                 paint);
+        if (identifier != null) {
+            canvas.drawText(
+                    identifier,
+                    x * size + widthOffset,
+                    y * size + heightOffset,
+                    identifierPaint);
+        }
     }
 }

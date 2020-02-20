@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(numVerticesText.getText().toString())) {
                     int numVertices = Integer.parseInt(numVerticesText.getText().toString());
-                    gameView.setGameState(new GameState(numVertices));
+                    gameView.setGameState(new GameState(numVertices, MainActivity.this));
                     gameView.invalidate();
                 }
             }

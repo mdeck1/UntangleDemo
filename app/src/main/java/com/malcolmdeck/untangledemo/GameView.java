@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -67,18 +68,25 @@ public class GameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            //identify which, if any, circle was touched
-            gameState.circleSelected(
-                    getFractionalXFromEvent(event),
-                    getFractionalYFromEvent(event));
-        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            gameState.circleMoved(
-                    getFractionalXFromEvent(event),
-                    getFractionalYFromEvent(event));
-            invalidate();
-        } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-            gameState.circleUnselected();
+        switch(event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //identify which, if any, circle was touched
+                gameState.circleSelected(
+                        getFractionalXFromEvent(event),
+                        getFractionalYFromEvent(event));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                gameState.circleMoved(
+                        getFractionalXFromEvent(event),
+                        getFractionalYFromEvent(event));
+                invalidate();
+                break;
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                gameState.circleUnselected();
+                break;
+            default:
+                Log.e("DEBUG", MotionEvent.actionToString(event.getAction()));
         }
         return true;
     }
